@@ -12,7 +12,7 @@ This repository contains both the serverless backend and an npm package for the 
 
 One click deployment to Netlify - just set your environment variables and you're ready to go.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/tombennet/bitcoin-serverless-donations#BITCOIN_XPUB=your_extended_public_key&BITCOIN_DERIVATION_PATH=your_account_path)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/bennet-org/bitcoin-serverless-donations#BITCOIN_XPUB=your_extended_public_key&BITCOIN_DERIVATION_PATH=your_account_path)
 
 ### Frontend
 
@@ -45,7 +45,7 @@ For a complete walkthrough, see [the tutorial on my blog](https://bennet.org/res
 
 1. **Clone and install**
    ```bash
-   git clone https://github.com/tombennet/bitcoin-serverless-donations.git
+   git clone https://github.com/bennet-org/bitcoin-serverless-donations.git
    cd bitcoin-serverless-donations
    npm install
    ```
