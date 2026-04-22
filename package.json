@@ -1,6 +1,6 @@
 {
   "name": "bitcoin-serverless-donations",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "author": "https://github.com/bennet-org/bitcoin-serverless-donations",
   "license": "MIT",
   "repository": {
@@ -24,15 +24,15 @@
   "devDependencies": {
     "@netlify/blobs": "10.7.4",
     "@netlify/functions": "5.2.0",
-    "@noble/curves": "^2.0.1",
-    "@noble/hashes": "^2.0.1",
-    "@scure/base": "^2.0.0",
-    "@scure/bip32": "^2.0.1",
-    "cssnano": "7.1.4",
-    "postcss": "8.5.9",
+    "@noble/curves": "^2.2.0",
+    "@noble/hashes": "^2.2.0",
+    "@scure/base": "^2.2.0",
+    "@scure/bip32": "^2.2.0",
+    "cssnano": "7.1.7",
+    "postcss": "8.5.10",
     "terser": "5.46.1",
     "typescript": "^5.9.3",
-    "vitest": "4.1.4"
+    "vitest": "4.1.5"
   },
   "main": "dist/bitcoin-pay.min.js",
   "module": "dist/bitcoin-pay.esm.js",
