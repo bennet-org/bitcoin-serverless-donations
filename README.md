@@ -39,7 +39,7 @@ Add the CDN script and stylesheet, then call `BitcoinPay.render()`:
 </script>
 ```
 
-For a complete walkthrough, see [the tutorial on my blog](https://bennet.org/resources/private-serverless-bitcoin-donations/).
+For a complete walkthrough, see [the tutorial on my blog](https://bennet.org/resources/private-serverless-bitcoin-donations/). Until [Silent Payments](https://bennet.org/learn/silent-payments-bitcoin-privacy/) gain widespread adoption, address rotation remains a solid approach to maintaining privacy when accepting donations.
 
 ## Backend Setup
 
