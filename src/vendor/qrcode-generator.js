@@ -2338,15 +2338,11 @@ var qrcode = (function () {
   };
 })();
 
-(function (factory) {
-  if (typeof define === "function" && define.amd) {
-    define([], factory);
-  } else if (typeof exports === "object") {
-    module.exports = factory();
-  }
-})(function () {
-  return qrcode;
-});
-
+// Note: the upstream UMD registration footer (define/module.exports) was
+// removed. This file is consumed only as an ES module (via the import in
+// qr.js, and inlined into the bundles by build.js), so the UMD branches were
+// dead code. Leaving them in caused the inlined `module.exports`/`define`
+// references to trip Rolldown's COMMONJS_VARIABLE_IN_ESM warning in downstream
+// ESM consumers.
 export { qrcode };
 export default qrcode;
