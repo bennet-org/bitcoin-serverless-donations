@@ -28,11 +28,11 @@
     "@noble/hashes": "^2.2.0",
     "@scure/base": "^2.2.0",
     "@scure/bip32": "^2.2.0",
-    "cssnano": "8.0.1",
+    "cssnano": "8.0.2",
     "postcss": "8.5.15",
     "terser": "5.48.0",
     "typescript": "^6.0.3",
-    "vitest": "4.1.8"
+    "vitest": "4.1.9"
   },
   "main": "dist/bitcoin-pay.min.js",
   "module": "dist/bitcoin-pay.esm.js",
