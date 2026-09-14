@@ -108,6 +108,7 @@ import "bitcoin-serverless-donations/css";
 | `bitcoinDonateText`      | Custom HTML above the Bitcoin address field                                        |
 | `lightningAddress`       | [Lightning address](https://lightningaddress.com/) for dual Bitcoin/Lightning mode |
 | `lightningDonateText`    | Custom HTML above the Lightning address field                                      |
+| `defaultTab`             | Tab shown first in dual mode: `"bitcoin"` (default) or `"lightning"`               |
 
 You can render multiple widgets by using a class selector (e.g. `.donation-widget`) or by calling `BitcoinPay.render()` multiple times. See [bitcoin-pay.js](/src/bitcoin-pay.js) for the full API.
 

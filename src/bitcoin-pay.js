@@ -38,6 +38,7 @@ class BitcoinPay {
       copyButtonText: "Copy",
       copiedText: "Copied!",
       cacheDuration: 10 * 60 * 1000, // 10 minutes
+      defaultTab: "bitcoin",
       qrCodeOptions: {
         ecc: "H",
         logo: "btc", // 'btc' | 'lightning' | undefined
@@ -56,6 +57,7 @@ class BitcoinPay {
    * @param {string} config.bitcoinDonateText - Optional content above the Bitcoin address field. Inserted as raw HTML
    * @param {string} config.lightningAddress - Optional Lightning address (e.g. "name@provider.com")
    * @param {string} config.lightningDonateText - Optional content above the Lightning address field. Inserted as raw HTML
+   * @param {string} config.defaultTab - Tab shown first in dual mode: "bitcoin" (default) or "lightning"
    * @param {Object} config.options - Optional configuration overrides
    * @returns {Promise<Array>} Array of results for each element (with status and value/reason)
    */
@@ -67,6 +69,7 @@ class BitcoinPay {
       bitcoinDonateText,
       lightningAddress,
       lightningDonateText,
+      defaultTab = "bitcoin",
       options = {},
     } = config;
 
@@ -88,6 +91,12 @@ class BitcoinPay {
       throw new Error("BitcoinPay: selector is required");
     }
 
+    if (defaultTab !== "bitcoin" && defaultTab !== "lightning") {
+      throw new Error(
+        'BitcoinPay: defaultTab must be "bitcoin" or "lightning"'
+      );
+    }
+
     const targetElements = document.querySelectorAll(selector);
     if (targetElements.length === 0) {
       throw new Error(`BitcoinPay: no elements found matching "${selector}"`);
@@ -95,7 +104,7 @@ class BitcoinPay {
 
     const instance = new BitcoinPay();
 
-    const finalConfig = { ...instance.defaultConfig, ...options };
+    const finalConfig = { ...instance.defaultConfig, ...options, defaultTab };
 
     // Create stable cache keys based on endpoint (UTF-8 safe)
     const endpointHash = btoa(unescape(encodeURIComponent(endpoint))).replace(
@@ -377,12 +386,16 @@ class BitcoinPay {
     const safeAddress = escapeHtml(address);
     const safeLightningAddress = escapeHtml(lightningAddress);
 
+    const lightningFirst = config.defaultTab === "lightning";
+    const bitcoinActive = lightningFirst ? "" : " active";
+    const lightningActive = lightningFirst ? " active" : "";
+
     return `
       <div class="bitcoin-pay-widget has-tabs">
         <div class="widget-content">
           <!-- Tab Navigation -->
           <div class="tab-navigation">
-            <button id="bitcoin-tab-${instanceId}" class="tab-btn active" data-tab="bitcoin">
+            <button id="bitcoin-tab-${instanceId}" class="tab-btn${bitcoinActive}" data-tab="bitcoin">
               <svg width="20" height="20" viewBox="0 0 64 64" fill="currentColor">
                 <g transform="translate(0.00630876,-0.00301984)">
                   <path d="m63.033,39.744c-4.274,17.143-21.637,27.576-38.782,23.301-17.138-4.274-27.571-21.638-23.295-38.78,4.272-17.145,21.635-27.579,38.775-23.305,17.144,4.274,27.576,21.64,23.302,38.784z"/>
@@ -391,7 +404,7 @@ class BitcoinPay {
               </svg>
               Bitcoin
             </button>
-            <button id="lightning-tab-${instanceId}" class="tab-btn" data-tab="lightning">
+            <button id="lightning-tab-${instanceId}" class="tab-btn${lightningActive}" data-tab="lightning">
               <svg width="20" height="20" viewBox="0 0 282 282" fill="currentColor">
                 <g clip-path="url(#clip0)">
                   <circle cx="140.983" cy="141.003" r="141" />
@@ -408,7 +421,7 @@ class BitcoinPay {
           </div>
 
           <!-- Bitcoin Tab Content -->
-          <div id="bitcoin-content-${instanceId}" class="tab-content active" data-tab="bitcoin">
+          <div id="bitcoin-content-${instanceId}" class="tab-content${bitcoinActive}" data-tab="bitcoin">
             <div class="widget-layout">
               <a href="bitcoin:${safeAddress}" class="qr-container" aria-label="Open in Bitcoin wallet">
                 <div id="${bitcoinQrId}" class="qr-code"></div>
@@ -432,7 +445,7 @@ class BitcoinPay {
           </div>
 
           <!-- Lightning Tab Content -->
-          <div id="lightning-content-${instanceId}" class="tab-content" data-tab="lightning">
+          <div id="lightning-content-${instanceId}" class="tab-content${lightningActive}" data-tab="lightning">
             <div class="widget-layout">
               <a href="lightning:${safeLightningAddress}" class="qr-container" aria-label="Open in Lightning wallet">
                 <div id="${lightningQrId}" class="qr-code"></div>

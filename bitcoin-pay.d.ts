@@ -47,6 +47,8 @@ export interface BitcoinPayConfig {
   lightningAddress?: string;
   /** Content above the Lightning address field. Inserted as raw HTML — do not pass untrusted content */
   lightningDonateText?: string;
+  /** Tab shown first when a Lightning address is set. Defaults to "bitcoin" */
+  defaultTab?: "bitcoin" | "lightning";
   /** Optional configuration overrides */
   options?: BitcoinPayOptions;
 }

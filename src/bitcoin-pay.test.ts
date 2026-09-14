@@ -162,4 +162,48 @@ describe("render configuration validation", () => {
       })
     ).rejects.toThrow(/not a valid Bitcoin address/);
   });
+
+  it("rejects an unknown defaultTab", async () => {
+    await expect(
+      BitcoinPay.render({
+        endpoint: "https://example.test/endpoint",
+        selector: "#target",
+        bitcoinFallbackAddress: VALID_ADDRESS,
+        defaultTab: "ethereum",
+      })
+    ).rejects.toThrow(/defaultTab/);
+  });
+});
+
+describe("default tab", () => {
+  const instance = new BitcoinPay();
+
+  function dualHTML(config: object) {
+    return instance.createDualWidgetHTML(
+      VALID_ADDRESS,
+      "me@example.com",
+      undefined,
+      undefined,
+      { ...instance.defaultConfig, ...config },
+      "test123"
+    );
+  }
+
+  it("opens on Bitcoin by default", () => {
+    const html = dualHTML({});
+
+    expect(html).toContain(`class="tab-btn active" data-tab="bitcoin"`);
+    expect(html).toContain(`class="tab-content active" data-tab="bitcoin"`);
+    expect(html).toContain(`class="tab-btn" data-tab="lightning"`);
+    expect(html).toContain(`class="tab-content" data-tab="lightning"`);
+  });
+
+  it("opens on Lightning when asked", () => {
+    const html = dualHTML({ defaultTab: "lightning" });
+
+    expect(html).toContain(`class="tab-btn active" data-tab="lightning"`);
+    expect(html).toContain(`class="tab-content active" data-tab="lightning"`);
+    expect(html).toContain(`class="tab-btn" data-tab="bitcoin"`);
+    expect(html).toContain(`class="tab-content" data-tab="bitcoin"`);
+  });
 });
