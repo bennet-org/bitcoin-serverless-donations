@@ -23,15 +23,15 @@
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "@netlify/blobs": "11.0.3",
+    "@netlify/blobs": "11.1.9",
     "@noble/curves": "2.4.0",
     "@noble/hashes": "2.4.0",
     "@scure/base": "2.4.0",
     "@scure/bip32": "2.4.0",
-    "@types/node": "26.5.1",
-    "terser": "5.51.2",
-    "typescript": "6.0.3",
-    "vitest": "5.0.0"
+    "@types/node": "26.6.6",
+    "terser": "5.51.3",
+    "typescript": "7.0.2",
+    "vitest": "5.1.1"
   },
   "main": "dist/bitcoin-pay.min.js",
   "module": "dist/bitcoin-pay.esm.js",

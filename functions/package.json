@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@netlify/blobs": "10.7.12",
-    "@noble/curves": "2.2.0",
-    "@noble/hashes": "2.2.0",
-    "@scure/base": "2.2.0",
-    "@scure/bip32": "2.2.0"
+    "@netlify/blobs": "11.1.9",
+    "@noble/curves": "2.4.0",
+    "@noble/hashes": "2.4.0",
+    "@scure/base": "2.4.0",
+    "@scure/bip32": "2.4.0"
   }
 }
